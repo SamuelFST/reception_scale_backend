@@ -1,12 +1,20 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 
 dotenv.config();
 
 import httpStatus from './src/config/constants/httpStatus';
 import connect from './src/config/db/mongoConfig';
+import groupRouter from './src/modules/group/routes/GroupRoutes';
+import personRouter from './src/modules/person/routes/PersonRoutes';
+import scaleRouter from './src/modules/scale/routes/ScaleRoutes';
+import subgroupRouter from './src/modules/subgroup/routes/SubgroupRoutes';
+import worshipRouter from './src/modules/worship/routes/WorshipRoutes';
 
 const app = express();
+app.use(cors());
+
 const { env } = process;
 const CONTAINER_ENV = 'container';
 
@@ -27,5 +35,10 @@ app.get('/api/status', (req, res) => {
 });
 
 app.use(express.json());
+app.use(personRouter);
+app.use(worshipRouter);
+app.use(groupRouter);
+app.use(subgroupRouter);
+app.use(scaleRouter);
 
 export default app;
