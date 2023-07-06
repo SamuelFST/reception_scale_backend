@@ -1,0 +1,33 @@
+version: '3'
+services:
+
+  reception-scale-db:
+    image: mongo
+    container_name: reception-scale-db
+    restart: always
+    networks:
+      - reception-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=mongoadmin
+      - MONGO_INITDB_DATABASE=reception_scale_db
+    ports:
+      - 27030:27017
+
+  reception-scale-api:
+    build: './'
+    container_name: reception-scale-api
+    depends_on:
+      - reception-scale-db
+    networks:
+      - reception-network
+    environment:
+      - API_PORT=4002
+      - MONGO_URL=mongodb://mongoadmin:mongoadmin@reception-scale-db:27017/reception_scale_db?authSource=admin
+      - NODE_ENV=container
+    ports:
+      - 4002:4002
+
+networks:
+  reception-network:
+    driver: bridge
