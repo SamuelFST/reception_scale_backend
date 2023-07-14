@@ -41,7 +41,7 @@ class GroupRepository {
 
   async update(groupId, groupData) {
     try {
-      return await Group.findByIdAndUpdate(groupId, groupData, { runValidators: true });
+      return await Group.findByIdAndUpdate(groupId, groupData, { runValidators: true, new: true });
     } catch (error) {
       console.error(error.message);
       return null;

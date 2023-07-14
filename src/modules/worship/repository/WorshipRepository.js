@@ -30,7 +30,8 @@ class WorshipRepository {
 
   async update(worshipId, worshipData) {
     try {
-      return await Worship.findByIdAndUpdate(worshipId, worshipData, { runValidators: true });
+      return await Worship
+        .findByIdAndUpdate(worshipId, worshipData, { runValidators: true, new: true });
     } catch (error) {
       console.error(error.message);
       return null;

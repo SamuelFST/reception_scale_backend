@@ -46,7 +46,7 @@ class ScaleRepository {
 
   async update(scaleId, scaleData) {
     try {
-      return await Scale.findByIdAndUpdate(scaleId, scaleData, { runValidators: true });
+      return await Scale.findByIdAndUpdate(scaleId, scaleData, { runValidators: true, new: true });
     } catch (error) {
       console.error(error.message);
       return null;

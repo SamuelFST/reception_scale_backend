@@ -41,7 +41,8 @@ class SubgroupRepository {
 
   async update(subgroupId, subgroupData) {
     try {
-      return await Subgroup.findByIdAndUpdate(subgroupId, subgroupData, { runValidators: true });
+      return await Subgroup
+        .findByIdAndUpdate(subgroupId, subgroupData, { runValidators: true, new: true });
     } catch (error) {
       console.error(error.message);
       return null;

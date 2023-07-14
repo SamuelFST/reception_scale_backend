@@ -30,7 +30,8 @@ class PersonRepository {
 
   async update(personId, personData) {
     try {
-      return await Person.findByIdAndUpdate(personId, personData, { runValidators: true });
+      return await Person
+        .findByIdAndUpdate(personId, personData, { runValidators: true, new: true });
     } catch (error) {
       console.error(error.message);
       return null;
