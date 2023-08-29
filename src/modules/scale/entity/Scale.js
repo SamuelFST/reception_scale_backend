@@ -1,5 +1,16 @@
 import mongoose, { Schema } from 'mongoose';
 
+/**
+ * @typedef Scale
+ * @property {string} _id
+ * @property {Date} date.required
+ * @property {string} observation
+ * @property {Worship} worship
+ * @property {Array.<Person>} people
+ * @property {Group} group.required
+ * @property {Subgroup} subgroup
+ */
+
 const scaleSchema = new mongoose.Schema(
   {
     date: {

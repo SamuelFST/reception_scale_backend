@@ -1,5 +1,13 @@
 import mongoose, { Schema } from 'mongoose';
 
+/**
+ * @typedef Group
+ * @property {string} _id
+ * @property {string} title.required
+ * @property {Array.<Scale>} scales
+ * @property {Array.<Subgroup>} subgroups
+ */
+
 const groupSchema = new mongoose.Schema(
   {
     title: {

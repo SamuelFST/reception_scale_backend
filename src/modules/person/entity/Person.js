@@ -1,4 +1,9 @@
 import mongoose from 'mongoose';
+/**
+ * @typedef Person
+ * @property {string} _id
+ * @property {string} name.required
+ */
 
 const personSchema = new mongoose.Schema(
   {

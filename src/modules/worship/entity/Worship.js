@@ -1,5 +1,11 @@
 import mongoose from 'mongoose';
 
+/**
+ * @typedef Worship
+ * @property {string} _id
+ * @property {string} type.required
+ */
+
 const worshipSchema = new mongoose.Schema(
   {
     type: {
