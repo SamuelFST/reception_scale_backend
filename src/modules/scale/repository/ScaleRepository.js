@@ -16,19 +16,11 @@ class ScaleRepository {
 
   async findById(id) {
     try {
-      return await Scale.findById(id).populate({
-        path: 'worship',
-        model: 'Worship',
-      }, {
-        path: 'people',
-        model: 'Person',
-      }, {
-        path: 'group',
-        model: 'Group',
-      }, {
-        path: 'subgroup',
-        model: 'Subgroup',
-      });
+      return await Scale.findById(id)
+        .populate('people')
+        .populate('group')
+        .populate('worship')
+        .populate('subgroup');
     } catch (error) {
       console.error(error.message);
       return null;
