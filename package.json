@@ -22,6 +22,7 @@
     "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "express-swagger-generator": "^1.1.17",
     "madge": "^6.1.0",
     "nodemon": "^2.0.19",
     "sucrase": "^3.23.0"
