@@ -3,7 +3,7 @@ import Group from '../entity/Group';
 class GroupRepository {
   async findAll() {
     try {
-      return await Group.find();
+      return await Group.find().sort({ createdAt: -1 });
     } catch (error) {
       console.error(error.message);
       return null;
