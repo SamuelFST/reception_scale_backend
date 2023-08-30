@@ -6,7 +6,7 @@
       "version": "1.0.0"
     },
     "host": "localhost:4002",
-    "basePath": "/",
+    "basePath": "/api",
     "produces": [
       "application/json"
     ],
@@ -15,6 +15,7 @@
     ]
   },
   "files": [
-    "./src/modules/**/**/*.js"
+    "./src/modules/**/**/*.js",
+    "./src/config/constants/ErrorResponseModel.js"
   ]
 }
