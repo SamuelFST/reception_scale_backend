@@ -20,7 +20,7 @@ export async function deleteSubgroupIndex(req) {
     }
 
     subgroup.scales.map(async (scale) => {
-      await deleteScaleIndex(scale._id);
+      await deleteScaleIndex({ params: { id: scale._id } });
     });
 
     await SubgroupRepository.delete(id);
