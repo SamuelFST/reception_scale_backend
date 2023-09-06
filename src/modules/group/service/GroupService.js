@@ -1,6 +1,7 @@
 import GroupException from '../exception/GroupException';
 import GroupRepository from '../repository/GroupRepository';
 import { deleteSubgroupIndex } from '../../subgroup/service/index';
+import { deleteScaleIndex } from '../../scale/service';
 
 import httpStatus from '../../../config/constants/httpStatus';
 
@@ -109,9 +110,15 @@ class GroupService {
       const { id } = req.params;
 
       const group = await this.findById(id);
+
+      group.scales.map(async (scale) => {
+        await deleteScaleIndex({ params: { id: scale._id } });
+      });
+
       group.subgroups.map(async (subgroup) => {
         await deleteSubgroupIndex({ params: { id: subgroup._id } });
       });
+
       await GroupRepository.delete(id);
 
       const response = {
