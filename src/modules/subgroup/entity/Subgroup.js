@@ -5,7 +5,7 @@ import mongoose, { Schema } from 'mongoose';
  * @property {string} _id
  * @property {string} title.required
  * @property {Array.<Scale>} scales
- * @property {Group} group
+ * @property {Group.model} group
  */
 
 const subgroupSchema = new mongoose.Schema(

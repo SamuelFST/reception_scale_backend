@@ -3,12 +3,12 @@ import mongoose, { Schema } from 'mongoose';
 /**
  * @typedef Scale
  * @property {string} _id
- * @property {Date} date.required
+ * @property {string} date.required
  * @property {string} observation
- * @property {Worship} worship
+ * @property {Worship.model} worship
  * @property {Array.<Person>} people
- * @property {Group} group.required
- * @property {Subgroup} subgroup
+ * @property {Group.model} group.required
+ * @property {Subgroup.model} subgroup
  */
 
 const scaleSchema = new mongoose.Schema(
