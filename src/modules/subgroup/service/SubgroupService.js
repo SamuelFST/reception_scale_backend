@@ -94,12 +94,14 @@ class SubgroupService {
       const subgroupData = req.body;
 
       this.validateSubgroupData(subgroupData);
+      const subgroup = await this.findById(id);
 
-      const updatedSubgroup = await SubgroupRepository.update(id, subgroupData);
+      const updatedData = {
+        ...subgroupData,
+        group: subgroup.group,
+      };
 
-      if (!updatedSubgroup) {
-        throw new SubgroupException(NOT_FOUND, `O subgrupo com o ID: ${id} não existe`);
-      }
+      const updatedSubgroup = await SubgroupRepository.update(id, updatedData);
 
       const response = {
         status: SUCCESS,
@@ -126,8 +128,13 @@ class SubgroupService {
   }
 
   async validateGroupId(groupId) {
-    const group = await GroupService.findGroupById({ params: { id: groupId } });
-    return group;
+    const response = await GroupService.findGroupById({ params: { id: groupId } });
+
+    if ('message' in response) {
+      throw new SubgroupException(response.status, response.message);
+    }
+
+    return response;
   }
 
   validateSubgroupData(data) {
